@@ -1,0 +1,87 @@
+Sulla base di quanto visto a lezione modellizzare la realta' di un' universita' definendo colonne con nome, tipo di dato e vincoli di integrita' per queste entita':
+- dipartimento
+- corso di laurea
+- corso
+- insegnante
+- appello
+- studenti
+- esito
+Ogni dipartimento e' composto da corsi di laura, formati da corsi, gestiti da insegnanti, che prevedono appelli per studenti, che avranno un esito finale
+NOTE: come detto in classe, in caso di ambiguita', cercare di immaginare una possibile realta', e nel caso sia una scelta poco chiara, descriverla con poche parole
+
+
+- DIPARTIMENTO
+
+    Nome: TEXT; NOT NULLABLE
+    Sede: VARCHAR(128) ; NOT NULLABLE
+    Contatti: VARCHAR(128) ; NOT NULLABLE
+    ConsiglioProfessori: VARCHAR(64) ; NOT NULLABLE
+    ConsiglioStudenti: VARCHAR(64) ; NOT NULLABLE
+
+- CORSO DI LAUREA
+
+    Nome: VARCHAR(128) ; NOT NULLABLE
+    Programma:  MEDIUMTEXT ; DEFAULT(0)
+    Luogo: VARCHAR(128) ; NOT NULLABLE
+    CalcoloVotoLaurea: TEXT;
+
+- CORSO
+
+    Programma:  MEDIUMTEXT ; DEFAULT(0)
+    CFU: INT ; NOT NULLABLE
+    Calendario: VARCHAR(128) ; NOT NULLABLE
+    MinimoOre:  INT ; DEFAULT(0)
+    OreTotali: INT ; NOT NULLABLE
+
+- INSEGNANTE
+
+    Nome: VARCHAR(64) ; NOT NULLABLE
+    Cognome: VARCHAR(64) ; NOT NULLABLE
+    Indirizzo: VARCHAR ; NOT NULLABLE
+    Cellulare: VARCHAR(32) ; NULLABLE 
+    DataNascita: DATE ; NOT NULLABLE
+    LuogoNascita: VARCHAR(64) ; NOT NULLABLE
+    CF: VARCHAR(64) ; NOT NULLABLE ; UNIQUE
+    Codice: VARCHAR(16) ; NOT NULLABLE 
+    ListaDiCorsi: VARCHAR(128) ; NULLABLE
+    Ricerche: VARCHAR(128) ; NULLABLE
+    Documentazione: VARCHAR(128) ; NULLABLE
+    Livello: VARCHAR(32) ; NOT NULLABLE
+    Salario: INT ; NOT NULLABLE 
+    TipoContratto: VARCHAR(64) ; NOT NULLABLE
+    Email: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+    Foto: VARCHAR ; NOT NULLABLE
+    Materia: VARCHAR(32) ; NOT NULLABLE
+    CorsiAttivi: TINYINT ; DEFAULT(0)
+
+- APPELLO
+
+    Matricole: INT; NOT NULLABLE
+    DataAppello: DATE ; NOT NULLABLE
+    Materia: VARCHAR(64) ; NOT NULLABLE
+    VotoMinimo: TINYINT ; NOT NULLABLE
+    VotoMassimo: TINYINT ; NOT NULLABLE
+    TipologiaAppello: VARCHAR(128) ; NOT NULLABLE 
+
+- STUDENTE
+
+    Matricola: INT; NOT NULLABLE
+    Nome: VARCHAR(64) ; NOT NULLABLE
+    Cognome: VARCHAR(64) ; NOT NULLABLE
+    Indirizzo: VARCHAR ; NOT NULLABLE
+    Cellulare: VARCHAR(32) ; NULLABLE 
+    DataNascita: DATE ; NOT NULLABLE
+    LuogoNascita: VARCHAR(64) ; NOT NULLABLE
+    CF: VARCHAR(64) ; NOT NULLABLE ; UNIQUE
+    Genere: VARCHAR(16) ; NOT NULLABLE 
+    TipoDocumento: VARCHAR(16) ; NOT NULLABLE 
+    Email: VARCHAR(128) ; NOT NULLABLE ; UNIQUE
+    AnnoIscrizione: VARCHAR(128) ; NOT NULLABLE 
+    ISE: INT; NOT NULLABLE
+
+- ESITO
+
+    TotaleEsamiSostenuti: TINYINT ; NOT NULLABLE
+    TotalePresenzaOreCorso: TINYINT ; NOT NULLABLE
+    TotaleAssenze: TINYINT ; NOT NULLABLE
+    LaureaConseguita: VARCHAR(10) ; NOT NULLABLE
